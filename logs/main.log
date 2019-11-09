@@ -1,1 +1,2 @@
-2019-11-09.16:43:11 ERROR [main] com.scs.web.blog.service.impl.UserServiceImpl.signIn:33  根据手机号查询用户出现异常
+2019-11-09.18:27:18 ERROR [main] com.scs.web.blog.service.impl.UserServiceImpl.signIn:34  根据手机号查询用户出现异常
+2019-11-09.18:27:48 ERROR [main] com.scs.web.blog.service.impl.UserServiceImpl.signIn:34  根据手机号查询用户出现异常

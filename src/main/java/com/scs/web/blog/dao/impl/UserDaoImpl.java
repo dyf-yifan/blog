@@ -61,7 +61,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public User findUserByMobile(String mobile) throws SQLException {
         Connection connection = DbUtil.getConnection();
-        String sql = "SELECT * FROM t_user WHILE mobile = ? ";
+        String sql = "SELECT * FROM t_user WHERE mobile = ? ";
         PreparedStatement pstmt = connection.prepareStatement(sql);
         pstmt.setString(1, mobile);
         ResultSet rs = pstmt.executeQuery();

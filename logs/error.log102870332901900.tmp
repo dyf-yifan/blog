@@ -1,0 +1,5 @@
+2019-11-10.17:14:15 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.batchInsert:22  批量新增图书出现异常
+2019-11-10.17:14:44 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.batchInsert:22  批量新增图书出现异常
+2019-11-10.17:31:46 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.batchInsert:22  批量新增图书出现异常
+2019-11-10.17:44:32 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.batchInsert:22  批量新增图书出现异常
+2019-11-10.17:46:55 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.batchInsert:22  批量新增图书出现异常

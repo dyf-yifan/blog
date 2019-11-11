@@ -44,10 +44,16 @@ public class DataUitl {
         return  genders[index];
     }
 
-    public static LocalDate getBirthday(){
+    public static LocalDate getBirthday() {
         LocalDate now = LocalDate.now();
         Random random = new Random();
         int bound = random.nextInt(8888);
         return now.minusDays(bound);
     }
+    public static int getDiamond(){
+        Random random = new Random();
+        int diamond = random.nextInt(100);
+        return diamond;
+    }
+
 }

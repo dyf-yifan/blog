@@ -32,7 +32,7 @@ public class JSoupSpider {
             } catch (IOException e) {
                 logger.error("连接失败");
             }
-            Elements divs = document.getElementsByClass("col-xs-8");
+            Elements divs = document.getElementsByClass("main review-item");
             divs.forEach(div -> {
                 Element wrapDiv = div.child(0);
                 Element link = wrapDiv.child(0);

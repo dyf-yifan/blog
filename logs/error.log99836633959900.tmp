@@ -1,0 +1,2 @@
+2019-11-10.13:47:47 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.batchInsert:22  批量新增图书出现异常
+2019-11-10.13:52:42 ERROR [main] com.scs.web.blog.dao.ArticleDaoTest.batchInsert:22  批量新增图书出现异常

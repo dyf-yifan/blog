@@ -76,6 +76,12 @@
       <version>RELEASE</version>
       <scope>compile</scope>
     </dependency>
+    <!--hu的外部依赖-->
+    <dependency>
+      <groupId>cn.hutool</groupId>
+      <artifactId>hutool-all</artifactId>
+      <version>4.6.8</version>
+    </dependency>
 
     <!--  日志依赖：logback和slf4j-->
     <dependency>

@@ -26,7 +26,7 @@ public class JsoupSpiderTwo {
         Document document = null;
         List<Article> articleList = new ArrayList<>(100);
         int j = 0;
-        for (int i = 1; i <= 180 ; i++) {
+        for (int i = 1; i <= 180; i++) {
             try {
                 document = Jsoup.connect("https://book.douban.com/review/best/?start=" + i).get();
             } catch (IOException e) {
@@ -38,10 +38,10 @@ public class JsoupSpiderTwo {
                 Element one = div.child(1);
                 Element name = one.child(1);
                 Element time;
-                System.out.println(one.children().size());
-                if(one.children().size() == 4 ){
+                System.out.println(one.childNodeSize());
+                if (one.children().size() == 4) {
                     time = one.child(3);
-                }else{
+                } else {
                     time = one.child(2);
                 }
                 Element seconds = div.child(2);
@@ -59,19 +59,15 @@ public class JsoupSpiderTwo {
                 article.setDiamond(DataUitl.getDiamond());
                 article.setPublish_time(time.text());
                 String a = comment.text();
-                String comm = a.substring(0,a.length()-2);
+                String comm = a.substring(0, a.length() - 2);
                 article.setComments(Integer.valueOf(comm));
                 article.setLikes(Integer.valueOf(xilike.text()));
                 articleList.add(article);
             });
             j++;
-            i = 2*j*10;
+            i = 2 * j * 10;
 
         }
         return articleList;
     }
-
-
-
-
 }

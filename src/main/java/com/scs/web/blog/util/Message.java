@@ -8,7 +8,8 @@ package com.scs.web.blog.util;
  * @Version 1.0
  **/
 public class Message {
-    public static String SIGN_IN_SUCCESS = "查询成功";
+    public static String SIGN_IN_SUCCESS = "登录成功";
     public static String PASSWORD_ERROR = "输入错误";
-    public static String MOBILE_NOT_FOUND = "图书不存在";
+    public static String MOBILE_NOT_FOUND = "用户不存在";
+
 }

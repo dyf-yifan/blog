@@ -24,7 +24,7 @@ public class ArticleServiceImpl implements ArticleService {
     private ArticleDao articleDao = DaoFactory.getArticleDaoInstance();
     private static Logger logger = LoggerFactory.getLogger(UserServiceImpl.class);
     @Override
-    public Map<String, Object> check(ArticleDto articleDto) {
+    public Map<String, Object> signIn(ArticleDto articleDto) {
         Article article = null;
         Map<String,Object> map = new HashMap<>();
         try{

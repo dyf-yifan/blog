@@ -52,6 +52,9 @@ public class ArticleDaoImpl implements ArticleDao {
             article.setComments(rs.getInt("comments"));
             article.setLikes(rs.getInt("likes"));
             article.setPublish_time(rs.getString("publish_time"));
+            article.setUseravatar(rs.getString("useravatar"));
+            article.setUserid(rs.getInt("userid"));
+            article.setUnlikes(rs.getString("unlikes"));
         }
         return article;
     }
@@ -66,7 +69,7 @@ public class ArticleDaoImpl implements ArticleDao {
     public int[] batchInsert(List<Article> articleList) throws SQLException {
         Connection connection = DbUtil.getConnection();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO article (title,content,cover,diamond,nickname,comments,likes,publish_time) VALUES (?,?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO article (title,content,cover,diamond,nickname,comments,likes,publish_time,userid,useravatar,unlikes) VALUES (?,?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement pstmt = connection.prepareStatement(sql);
 
         articleList.forEach(article -> {
@@ -79,6 +82,9 @@ public class ArticleDaoImpl implements ArticleDao {
                 pstmt.setInt(6, article.getComments());
                 pstmt.setInt(7, article.getLikes());
                 pstmt.setString(8, article.getPublish_time());
+                pstmt.setInt(9,article.getUserid());
+                pstmt.setString(10,article.getUseravatar());
+                pstmt.setString(11,article.getUnlikes());
                 pstmt.addBatch();
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -10,7 +10,7 @@ import java.io.IOException;
 
 /**
  * @ClassName CorsFilter
- * @Description TODO
+ * @Description 跨域过滤器
  * @Author
  * @Date 2019/11/9 16:44
  * @Version 1.0

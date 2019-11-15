@@ -21,5 +21,7 @@ public class Article {
     private Integer comments;
     private Integer likes;
     private String publish_time;
-
+    private String useravatar;
+    private Integer userid;
+    private String unlikes;
 }

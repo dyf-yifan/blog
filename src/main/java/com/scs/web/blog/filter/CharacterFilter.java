@@ -2,7 +2,6 @@ package com.scs.web.blog.filter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -11,7 +10,7 @@ import java.io.IOException;
 
 /**
  * @ClassName CharacterFilter
- * @Description TODO
+ * @Description 字符集过滤器
  * @Author
  * @Date 2019/11/9 16:45
  * @Version 1.0

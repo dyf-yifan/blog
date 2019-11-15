@@ -16,30 +16,13 @@ public class JsoupDemo {
         //声明文档变量
         Document document;
         //通过JSoup连接目标界面
-        document = Jsoup.connect("https://book.douban.com/review/best/").get();
+        document = Jsoup.connect("https://book.douban.com/review/best/?start=0").get();
         //选取所有class为main review-item的元素集合
         Elements divs = document.getElementsByClass("main review-item");
         //对divs遍历
         divs.forEach(div->{
-            Element on = div.child(0);
-            Element cover = on.child(0);
-            Element one = div.child(1);
-            Element name = one.child(1);
-            Element diamond = one.child(2);
-            Element time;
-                if(one.childNodeSize() == 4){
-                     time = one.child(3);
-                }else{
-                    time = one.child(2);
-                }
-            Element seconds = div.child(2);
-            Element title = seconds.child(0);
-            Element three = seconds.child(1);
-            Element content = three.child(0);
-            Element four = seconds.child(3);
-            Element xilike = four.child(0);
-            Element comment = four.child(2);
-            System.out.println(cover.attr("src"));
+            Element unlikes = div.child(2).child(3).child(1);
+        System.out.println(unlikes.text());
         });
 
 

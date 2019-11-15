@@ -51,7 +51,18 @@ public class JsoupSpiderTwo {
                 Element four = seconds.child(3);
                 Element xilike = four.child(0);
                 Element comment = four.child(2);
+                Element avatar = div.child(1).child(0).child(0);
+                Element unlikes = div.child(2).child(3).child(1);
+                if(unlikes != null){
+                    unlikes = div.child(2).child(3).child(1);
+                }else {
+                    unlikes = div.child(2).child(3);
+                }
+                System.out.println(unlikes.text());
                 Article article = new Article();
+                article.setUserid(DataUitl.getUserid());
+                article.setUnlikes(unlikes.text());
+                article.setUseravatar(avatar.attr("src"));
                 article.setTitle(title.text());
                 article.setNickname(name.text());
                 article.setContent(content.text());

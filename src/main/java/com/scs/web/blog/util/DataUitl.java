@@ -27,6 +27,10 @@ public class DataUitl {
         return stringBuilder.toString();
     }
 
+    /**
+     * 获得密码
+     * @return
+     */
     public static String getPassword(){
         StringBuilder password = new StringBuilder("");
         Random random = new Random();
@@ -50,10 +54,21 @@ public class DataUitl {
         int bound = random.nextInt(8888);
         return now.minusDays(bound);
     }
+    public static int getUserid(){
+        Random random = new Random();
+        int userid = random.nextInt(200);
+        return userid;
+    }
     public static int getDiamond(){
         Random random = new Random();
         int diamond = random.nextInt(100);
         return diamond;
     }
 
+    public static void main(String[] args) {
+        for (int i = 1; i <= 10; i++){
+            System.out.println(getDiamond());
+            System.out.println(getMobile());
+        }
+    }
 }

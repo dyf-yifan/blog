@@ -9,6 +9,13 @@ import java.util.List;
  * @author 丁怡凡
  */
 public interface UserDao {
+ /**
+ * 批量新增用户
+ * @param userList
+ * @return
+ * @throws SQLException
+ */
+int[] batchInsert(List<User> userList) throws SQLException;
     /**
      * 新增用户
      * @param user
@@ -17,13 +24,7 @@ public interface UserDao {
      */
     int insert(User user) throws SQLException;
 
-    /**
-     * 批量新增用户
-     * @param userList
-     * @return
-     * @throws SQLException
-     */
-    int[] batchInsert(List<User> userList) throws SQLException;
+
 
     /**
      * 根据手机号查找用户

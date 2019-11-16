@@ -1,5 +1,7 @@
 package com.scs.web.blog.dao.impl;
 
+import cn.hutool.db.Db;
+import cn.hutool.db.Entity;
 import com.scs.web.blog.dao.UserDao;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.util.DbUtil;
@@ -84,5 +86,10 @@ public class UserDaoImpl implements UserDao {
             user.setStatus(rs.getShort("status"));
         }
         return user;
+    }
+
+    @Override
+    public List<Entity> selectAll() throws SQLException {
+        return Db.use().query("SELECT * from t_user ORDER BY id DESC");
     }
 }

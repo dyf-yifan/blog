@@ -1,7 +1,7 @@
 package com.scs.web.blog.dao;
 
+import cn.hutool.db.Entity;
 import com.scs.web.blog.entity.User;
-
 import java.sql.SQLException;
 import java.util.List;
 
@@ -33,4 +33,6 @@ int[] batchInsert(List<User> userList) throws SQLException;
      * @throws SQLException
      */
     User findUserByMobile(String mobile) throws SQLException;
+    List<Entity> selectAll() throws SQLException;
+
 }

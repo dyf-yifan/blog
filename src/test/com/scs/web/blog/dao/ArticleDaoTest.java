@@ -19,7 +19,7 @@ public class ArticleDaoTest {
                 int[] result = articleDao.batchInsert((JsoupSpiderTwo.getArticles()));
             }catch (SQLException e){
                 logger.error("批量新增图书出现异常");
-//                e.printStackTrace();
+                e.printStackTrace();
             }
     }
 }

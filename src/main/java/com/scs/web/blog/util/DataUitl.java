@@ -59,12 +59,16 @@ public class DataUitl {
         int userid = random.nextInt(200);
         return userid;
     }
+    public static Long getId(){
+        Random random = new Random();
+        Long id = random.nextLong();
+        return id;
+    }
     public static int getDiamond(){
         Random random = new Random();
         int diamond = random.nextInt(100);
         return diamond;
     }
-
     public static void main(String[] args) {
         for (int i = 1; i <= 10; i++){
             System.out.println(getDiamond());

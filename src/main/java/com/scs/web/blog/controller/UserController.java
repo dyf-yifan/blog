@@ -1,8 +1,10 @@
 package com.scs.web.blog.controller;
 
+import cn.hutool.db.Entity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.scs.web.blog.domain.UserDto;
+import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.factory.ServiceFactory;
 import com.scs.web.blog.service.UserService;
 import com.scs.web.blog.util.Message;
@@ -18,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -27,7 +31,7 @@ import java.util.Map;
  * @Date 2019/11/9 16:45
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = "/api/sign-in")
+@WebServlet(urlPatterns = {"/api/sign-in","/api/user"})
 public class UserController extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserService userService = ServiceFactory.getUserServiceInstance();
@@ -58,5 +62,28 @@ public class UserController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         logger.info("UserController初始化");
+    }
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        List<Entity> entityList = null;
+        try{
+            entityList = DaoFactory.getUserDaoInstance().selectAll();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+//        设置响应对象的内容类型
+        resp.setContentType("application/json;charset = UTF-8");
+        PrintWriter out = resp.getWriter();
+        Integer code = null;
+        String msg = null;
+        Object user = null;
+        ResponseObject ro =  ResponseObject.success(code,msg,user);
+        ro.setCode(resp.getStatus());
+        ro.setMsg("成功");
+        ro.setData(entityList);
+//        创建一个Gson对象
+        Gson json = new GsonBuilder().create();
+        out.print(json.toJson(ro));
+        out.close();
     }
 }

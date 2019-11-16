@@ -20,7 +20,7 @@ import java.util.List;
  * @Version 1.0
  **/
 public class JsoupSpiderTwo {
-    private static Logger logger = LoggerFactory.getLogger(JSoupSpider.class);
+    private static Logger logger = LoggerFactory.getLogger(JsoupSpiderTwo.class);
 
     public static List<Article> getArticles() {
         Document document = null;
@@ -58,7 +58,7 @@ public class JsoupSpiderTwo {
                 }else {
                     unlikes = div.child(2).child(3);
                 }
-                System.out.println(unlikes.text());
+//                System.out.println(unlikes.text());
                 Article article = new Article();
                 article.setUserid(DataUitl.getUserid());
                 article.setUnlikes(unlikes.text());

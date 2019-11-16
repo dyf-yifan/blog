@@ -1,5 +1,7 @@
 package com.scs.web.blog.domain;
 
+import lombok.Data;
+
 /**
  * @ClassName ArticleDto
  * @Description TODO
@@ -7,6 +9,7 @@ package com.scs.web.blog.domain;
  * @Date 2019/11/10 12:01
  * @Version 1.0
  **/
+@Data
 public class ArticleDto {
     private String title;
     private String content;
@@ -16,21 +19,5 @@ public class ArticleDto {
     }
     public ArticleDto(){
 
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
     }
 }

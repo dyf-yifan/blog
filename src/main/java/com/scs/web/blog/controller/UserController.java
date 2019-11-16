@@ -4,6 +4,7 @@ import cn.hutool.db.Entity;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.scs.web.blog.domain.UserDto;
+import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.factory.ServiceFactory;
 import com.scs.web.blog.service.UserService;
@@ -31,7 +32,7 @@ import java.util.Map;
  * @Date 2019/11/9 16:45
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = {"/api/sign-in","/api/user"})
+@WebServlet(urlPatterns = {"/api/sign-in","/api/user","/api/register"})
 public class UserController extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
     private UserService userService = ServiceFactory.getUserServiceInstance();
@@ -62,6 +63,33 @@ public class UserController extends HttpServlet {
     @Override
     public void init() throws ServletException {
         logger.info("UserController初始化");
+    }
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException{
+        req.setCharacterEncoding("UTF-8");
+        BufferedReader reader = req.getReader();
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = null;
+        while((line = reader.readLine()) != null){
+            stringBuilder.append(line);
+        }
+        System.out.println(stringBuilder.toString());
+        Gson gson = new GsonBuilder().create();
+        User user = gson.fromJson(stringBuilder.toString(),User.class);
+        int n = 0;
+        try{
+            n = DaoFactory.getUserDaoInstance().insertUser(user);
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        resp.setContentType("application/json;charset=utf-8");
+        int code = resp.getStatus();
+        String msg = n == 1 ? "成功":"失败";
+        System.out.println(n);
+        ResponseObject ro = ResponseObject.success(code,msg);
+        PrintWriter out = resp.getWriter();
+        out.print(gson.toJson(ro));
+        out.close();
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -1,5 +1,6 @@
 package com.scs.web.blog.domain;
 
+import lombok.Data;
 /**
  * @ClassName UserDto
  * @Description 用户传输对象
@@ -7,6 +8,7 @@ package com.scs.web.blog.domain;
  * @Date 2019/11/9 15:36
  * @Version 1.0
  **/
+@Data
 public class UserDto {
     private String mobile;
     private String password;
@@ -16,21 +18,5 @@ public class UserDto {
     }
     public UserDto(){
 
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

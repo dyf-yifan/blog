@@ -17,7 +17,21 @@ import java.util.List;
  * @Version 1.0
  **/
 public class UserDaoImpl implements UserDao {
-
+    @Override
+    public int insertUser(User user) throws SQLException {
+        Connection connection = DbUtil.getConnection();
+        String sql = "INSERT INTO t_user (mobile,password,nickname,gender,address,introduction) VALUES (?,?,?,?,?,?) ";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        pstmt.setString(1, user.getMobile());
+        pstmt.setString(2, user.getPassword());
+        pstmt.setString(3,user.getNickname());
+        pstmt.setString(4,user.getGender());
+        pstmt.setString(5,user.getAddress());
+        pstmt.setString(6,user.getIntroduction());
+        int n = pstmt.executeUpdate();
+        DbUtil.close(null, pstmt, connection);
+        return n;
+    }
 
     @Override
     public int insert(User user) throws SQLException {

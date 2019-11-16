@@ -23,6 +23,7 @@ int[] batchInsert(List<User> userList) throws SQLException;
      * @throws SQLException
      */
     int insert(User user) throws SQLException;
+    int insertUser(User user) throws SQLException;
 
 
 

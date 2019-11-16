@@ -5,5 +5,4 @@ import java.util.Map;
 
 public interface ThemeService {
     Map<String,Object> signIn(ThemeDto themeDto);
-
 }

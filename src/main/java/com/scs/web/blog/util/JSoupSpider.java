@@ -38,6 +38,7 @@ public class JSoupSpider {
                 Element link = wrapDiv.child(0);
                 Elements linkChildren = link.children();
                 User user = new User();
+                user.setAddress(DataUitl.getAddress());
                 user.setMobile(DataUitl.getMobile());
                 user.setPassword(DataUitl.getPassword());
                 user.setGender(DataUitl.getGender());

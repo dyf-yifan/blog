@@ -58,7 +58,6 @@ public class JsoupSpiderTwo {
                 }else {
                     unlikes = div.child(2).child(3);
                 }
-//                System.out.println(unlikes.text());
                 Article article = new Article();
                 article.setUserid(DataUitl.getUserid());
                 article.setUnlikes(unlikes.text());

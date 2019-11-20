@@ -1,12 +1,16 @@
 package com.scs.web.blog.service;
 
-import com.scs.web.blog.domain.ArticleDto;
-import java.util.Map;
+import com.scs.web.blog.domain.vo.ArticleVo;
+
+import java.util.List;
 
 /**
  * @author 丁怡凡
  */
 public interface ArticleService {
-    Map<String,Object> signIn(ArticleDto articleDto);
-
+    /**
+     * 获取热门文章
+     * @return
+     */
+    List<ArticleVo> getHotArticles();
 }

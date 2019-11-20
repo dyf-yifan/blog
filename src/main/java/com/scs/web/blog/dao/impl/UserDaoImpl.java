@@ -49,7 +49,7 @@ public class UserDaoImpl implements UserDao {
     public int[] batchInsert(List<User> userList) throws SQLException {
         Connection connection = DbUtil.getConnection();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO t_user (mobile,password,nickname,avatar,gender,birthday,introduction,create_time) VALUES (?,?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO t_user (mobile,password,nickname,avatar,gender,birthday,address,introduction,create_time) VALUES (?,?,?,?,?,?,?,?,?) ";
         PreparedStatement pstmt = connection.prepareStatement(sql);
 
         userList.forEach(user -> {
@@ -61,8 +61,9 @@ public class UserDaoImpl implements UserDao {
                 pstmt.setString(5, user.getGender());
                 //日期的设置，可以使用setObject
                 pstmt.setObject(6, user.getBirthday());
-                pstmt.setString(7, user.getIntroduction());
-                pstmt.setObject(8, user.getCreateTime());
+                pstmt.setString(7,user.getAddress());
+                pstmt.setString(8, user.getIntroduction());
+                pstmt.setObject(9, user.getCreateTime());
                 pstmt.addBatch();
             } catch (SQLException e) {
                 e.printStackTrace();

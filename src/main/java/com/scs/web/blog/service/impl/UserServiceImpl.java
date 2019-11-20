@@ -6,6 +6,7 @@ import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.service.UserService;
 import com.scs.web.blog.util.Message;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -34,7 +35,7 @@ public class UserServiceImpl implements UserService {
             logger.error("根据手机号查询用户出现异常");
         }
         if (user != null){
-            if(user.getPassword().equals(userDto.getPassword())){
+            if(user.getPassword().equals(DigestUtils.md5Hex(userDto.getPassword()))){
                 map.put("msg", Message.SIGN_IN_SUCCESS);
                 map.put("data",user);
             }else{
@@ -45,4 +46,6 @@ public class UserServiceImpl implements UserService {
         }
         return map;
     }
+
+
 }

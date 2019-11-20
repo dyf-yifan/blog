@@ -3,6 +3,7 @@ package com.scs.web.blog.dao.impl;
 import cn.hutool.db.Db;
 import cn.hutool.db.Entity;
 import com.scs.web.blog.dao.ArticleDao;
+import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.util.DbUtil;
 
@@ -10,6 +11,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -64,6 +66,32 @@ public class ArticleDaoImpl implements ArticleDao {
             return Db.use().query("SELECT * from article ORDER BY id DESC");
     }
 
+    @Override
+    public List<ArticleVo> selectHotArticles() throws SQLException {
+        List<ArticleVo> articleVoList = new ArrayList<>(20);
+        Connection connection = DbUtil.getConnection();
+        String sql = "SELECT a.id,a.userid,a.title,a.cover,a.nickname,a.content,a.likes,a.unlikes,a.useravatar,a.diamond,b.id,b.nickname,b.avatar\n"+
+                "FROM article a\n" +
+                "LEFT JOIN t_user b\n" +
+                "ON a.userid = b.id\n" +
+                "ORDER BY a.diamond DESC LIMIT 20";
+        PreparedStatement pstmt = connection.prepareStatement(sql);
+        ResultSet rs = pstmt.executeQuery();
+        while (rs.next()) {
+            ArticleVo article = new ArticleVo();
+            article.setId(rs.getLong("id"));
+            article.setUserid(rs.getInt("userid"));
+            article.setTitle(rs.getString("title"));
+            article.setCover(rs.getString("cover"));
+            article.setContent(rs.getString("content"));
+            article.setLikes(rs.getString("likes"));
+            article.setUnlikes(rs.getString("unlikes"));
+            article.setUseravatar(rs.getString("useravatar"));
+            article.setDiamond(rs.getInt("diamond"));
+            articleVoList.add(article);
+        }
+        return articleVoList;
+    }
 
     @Override
     public int[] batchInsert(List<Article> articleList) throws SQLException {

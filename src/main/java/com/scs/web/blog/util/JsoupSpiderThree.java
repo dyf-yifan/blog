@@ -37,7 +37,7 @@ public class JsoupSpiderThree {
                 Element look = div.child(1).child(0).child(0).child(1).child(1);
                 Element production = div.child(1).child(1);
                 Theme theme = new Theme();
-                theme.setId(DataUitl.getId());
+//                theme.setId(DataUitl.getId());
                 theme.setPic(pic.attr("src"));
                 theme.setThname(thname.text());
                 theme.setThtime(thtime.text());

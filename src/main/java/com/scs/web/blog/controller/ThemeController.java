@@ -38,7 +38,10 @@ public class ThemeController extends HttpServlet {
         }catch (SQLException e){
             e.printStackTrace();
         }
-//        设置响应对象的内容类型
+/**
+ *
+ *设 置响应对象的内容类型
+ */
         resp.setContentType("application/json;charset = UTF-8");
         PrintWriter out = resp.getWriter();
         Integer code = null;

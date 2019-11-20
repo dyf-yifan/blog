@@ -1,6 +1,7 @@
 package com.scs.web.blog.dao;
 
 import cn.hutool.db.Entity;
+import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.entity.Article;
 
 import java.sql.SQLException;
@@ -33,7 +34,18 @@ public interface ArticleDao {
      * @throws SQLException
      */
     Article findArticleByTitle(String title) throws SQLException;
-    List<Entity> selectAll() throws SQLException;
-//    Entity getArticle(int id) throws SQLException;
 
+    /**
+     * 查询所有文章
+     * @return
+     * @throws SQLException
+     */
+    List<Entity> selectAll() throws SQLException;
+
+    /**
+     * 查询热门文章
+     * @return
+     * @throws SQLException
+     */
+    List<ArticleVo> selectHotArticles() throws SQLException;
 }

@@ -27,8 +27,8 @@ import java.util.Map;
 
 /**
  * @ClassName UserController
- * @Description TODO
- * @Author
+ * @Description 用户控制器
+ * @Author ding
  * @Date 2019/11/9 16:45
  * @Version 1.0
  **/

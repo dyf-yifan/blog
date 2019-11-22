@@ -26,7 +26,7 @@ import java.util.List;
  * @Date 2019/11/16 11:59
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = {"/api/theme"})
+@WebServlet(urlPatterns = "/api/theme")
 public class ThemeController extends HttpServlet {
     private static Logger logger = LoggerFactory.getLogger(UserController.class);
     private ThemeDao ThemeController = DaoFactory.getThemeDaoInstance();

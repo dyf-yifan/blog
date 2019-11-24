@@ -1,6 +1,8 @@
 package com.scs.web.blog.util;
 
+import java.util.Calendar;
 import java.util.Random;
+import java.util.TimeZone;
 
 /**
  * @ClassName Util
@@ -39,4 +41,12 @@ public class Util {
 //    public static void main(String[] args) {
 //        System.out.println(Util.getRandomString());
 //    }
+public static void main(String[] args) {
+    Calendar cal = Calendar.getInstance();
+    TimeZone timeZone = cal.getTimeZone();
+    System.out.println(timeZone.getID());
+    System.out.println(timeZone.getDisplayName());
+}
+
+
 }

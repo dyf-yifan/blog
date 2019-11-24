@@ -1,7 +1,7 @@
 package com.scs.web.blog.controller;
 
-import com.scs.web.blog.util.ImageUtil;
-import com.scs.web.blog.util.Util;
+import com.scs.web.blog.verify.ImageUtil;
+import com.scs.web.blog.verify.StringUtil;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
@@ -21,19 +21,18 @@ import java.io.OutputStream;
  * @Date 2019/11/20 11:34
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = "/code")
+@WebServlet(urlPatterns = "/api/code")
 public class CodeController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String code = Util.getRandomString(4);
-
+        //获取随机验证码
+        String code = StringUtil.getRandomString();
+        //存入session
         HttpSession session = req.getSession();
-        System.out.println(session.getId());
-        session.setAttribute("code",code);
-
-        BufferedImage img = ImageUtil.getImage(code,200,100);
-//        设置resp
-        resp.setContentType("image/jpeg");
+        session.setAttribute("Access-Token",code);
+        BufferedImage img = ImageUtil.getImage(200,100,code);
+        //设置resp的响应内容类型
+        resp.setContentType("image/jpg");
         OutputStream out = resp.getOutputStream();
         ImageIO.write(img,"jpg",out);
         out.close();

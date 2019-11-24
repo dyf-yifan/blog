@@ -1,29 +1,31 @@
 package com.scs.web.blog.dao;
 
+import com.scs.web.blog.domain.vo.ThemeVo;
+import com.scs.web.blog.entity.Theme;
 import com.scs.web.blog.factory.DaoFactory;
-import com.scs.web.blog.util.JsoupSpiderThree;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.sql.SQLException;
 
-import static org.junit.Assert.*;
+import java.sql.SQLException;
+import java.util.List;
 
 public class ThemeDaoTest {
     private static Logger logger = (Logger) LoggerFactory.getLogger(ThemeDaoTest.class);
     private ThemeDao themeDao = DaoFactory.getThemeDaoInstance();
     @Test
-    public void batchInsert() {
-        try{
-            int[] result = themeDao.batchInsert((JsoupSpiderThree.getThemes()));
-        }catch (SQLException e){
-            logger.error("批量新增图书出现异常");
-                e.printStackTrace();
-        }
+    public void selectHotTopics() throws SQLException {
+        List<Theme> themeList = themeDao.selectHotThemes();
+        System.out.println(themeList.size());
     }
-
     @Test
-    public void selectAll() {
-
+    public void selectByKeywords() throws SQLException {
+        List<Theme> themeList = themeDao.selectByKeywords("小");
+        System.out.println(themeList.size());
+    }
+    @Test
+    public void getTheme() throws SQLException {
+        ThemeVo themeVo = themeDao.getTheme(1);
+        System.out.println(themeVo);
     }
 }

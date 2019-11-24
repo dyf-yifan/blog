@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 /**
  * @ClassName MySessionContext
- * @Description TODO
+ * @Description 自定义sessionContext
  * @Author ding
  * @Date 2019/11/21 8:42
  * @Version 1.0

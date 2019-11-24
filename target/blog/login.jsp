@@ -11,8 +11,8 @@
     <title>登录页</title>
 </head>
 <body>
-<img src="${pageContext.request.contextPath}/code" alt="">
-<form action="${pageContext.request.contextPath}/login" method="post">
+<img src="${pageContext.request.contextPath}/api/code" alt="">
+<form action="${pageContext.request.contextPath}/api/login" method="post">
     <label>
         <input type="text" name="code">
     </label>

@@ -14,7 +14,7 @@ import java.io.IOException;
  * @Date 2019/11/21 8:09
  * @Version 1.0
  **/
-@WebServlet(urlPatterns = "/login")
+@WebServlet(urlPatterns = "/api/login")
 public class LoginController extends HttpServlet {
 
     @Override

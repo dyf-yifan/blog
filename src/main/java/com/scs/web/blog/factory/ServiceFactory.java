@@ -1,6 +1,5 @@
 package com.scs.web.blog.factory;
 
-import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.service.ArticleService;
 import com.scs.web.blog.service.ThemeService;
 import com.scs.web.blog.service.UserService;
@@ -9,8 +8,8 @@ import com.scs.web.blog.service.impl.ThemeServiceImpl;
 import com.scs.web.blog.service.impl.UserServiceImpl;
 
 /**
- * @ClassName ServiceFoctory
- * @Description TODO
+ * @ClassName ServiceFactory
+ * @Description Service工厂类
  * @Author
  * @Date 2019/11/9 16:40
  * @Version 1.0

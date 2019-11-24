@@ -1,0 +1,6 @@
+2019-11-24.16:31:24 ERROR [main] com.scs.web.blog.util.BeanHandler.convertArticle:117  文章数据结果集解析异常
+2019-11-24.16:37:56 ERROR [main] com.scs.web.blog.util.BeanHandler.convertArticle:117  文章数据结果集解析异常
+2019-11-24.16:38:21 ERROR [main] com.scs.web.blog.util.BeanHandler.convertArticle:117  文章数据结果集解析异常
+2019-11-24.16:40:27 ERROR [main] com.scs.web.blog.util.BeanHandler.convertArticle:117  文章数据结果集解析异常
+2019-11-24.16:41:43 ERROR [main] com.scs.web.blog.util.BeanHandler.convertUser:53  用户数据结果集解析产生异常
+2019-11-24.16:43:04 ERROR [main] com.scs.web.blog.util.BeanHandler.convertUser:53  用户数据结果集解析产生异常

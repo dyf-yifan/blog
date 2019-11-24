@@ -1,6 +1,8 @@
 package com.scs.web.blog.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -13,6 +15,8 @@ import java.time.LocalDateTime;
  * @Version 1.0
  **/
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
     private Long id;
     private String mobile;
@@ -29,7 +33,9 @@ public class User {
     private Short articles;
     private LocalDateTime createTime;
     private Short status;
-    private Long fnumber;
-    private Long achivelike;
+    private Long fNumber;
+    private Long achieveLike;
     private Long total;
+    private String banner;
+    private String email;
 }

@@ -46,6 +46,14 @@ public class JsoupSpider {
                 user.setIntroduction(linkChildren.get(2).text());
                 user.setBirthday(DataUitl.getBirthday());
                 user.setCreateTime(LocalDateTime.now());
+                user.setStatus(DataUitl.getStatus());
+                user.setFollows(DataUitl.getDia());
+                user.setFans(DataUitl.getDia());
+                user.setArticles(DataUitl.getDia());
+                user.setFNumber(DataUitl.getUserId());
+                user.setAchieveLike(DataUitl.getUserId());
+                user.setTotal(DataUitl.getUserId());
+                user.setEmail(DataUitl.getEmail());
                 userList.add(user);
             });
         }
@@ -82,20 +90,20 @@ public class JsoupSpider {
         return themeList;
     }
 
-    public static void main(String[] args) {
-        Document document = null;
-        List<Theme> themeList = new ArrayList<>(100);
-        try {
-            document = Jsoup.connect("https://www.zhihu.com/api/v4/news_specials/list?limit=10&offset=400").get();
-        } catch (IOException e) {
-            logger.error("连接失败");
-        }
-
-        Elements titles = document.getElementsByClass("type-string");
-        titles.forEach(title -> {
-            System.out.println(title.text());
-        });
-    }
+//    public static void main(String[] args) {
+//        Document document = null;
+//        List<Theme> themeList = new ArrayList<>(100);
+//        try {
+//            document = Jsoup.connect("https://www.zhihu.com/api/v4/news_specials/list?limit=10&offset=400").get();
+//        } catch (IOException e) {
+//            logger.error("连接失败");
+//        }
+//
+//        Elements titles = document.getElementsByClass("type-string");
+//        titles.forEach(title -> {
+//            System.out.println(title.text());
+//        });
+//    }
 
     public static List<Article> getArticles() {
         Document document = null;

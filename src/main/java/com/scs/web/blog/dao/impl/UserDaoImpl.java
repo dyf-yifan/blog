@@ -10,10 +10,8 @@ import com.scs.web.blog.util.DbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -53,6 +51,43 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
+    public List<User> findAll() throws SQLException {
+        List<User> userList = new ArrayList<>();
+        Connection connection = DbUtil.getConnection();
+        connection.setAutoCommit(false);
+        String sql = "SELECT * FROM t_user" ;
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while(rs.next()){
+                User user = new User();
+                user.setId(rs.getLong("id"));
+                user.setMobile(rs.getString("mobile"));
+                user.setPassword(rs.getString("password"));
+                user.setNickname(rs.getString("nickname"));
+                user.setAvatar(rs.getString("avatar"));
+                user.setGender(rs.getString("gender"));
+                user.setBirthday(rs.getDate("birthday").toLocalDate());
+                user.setAddress(rs.getString("address"));
+                user.setIntroduction(rs.getString("introduction"));
+                user.setHomepage(rs.getString("homepage"));
+                user.setFollows(rs.getShort("follows"));
+                user.setFans(rs.getShort("fans"));
+                user.setArticles(rs.getShort("articles"));
+                user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
+                user.setStatus(rs.getShort("status"));
+                user.setFNumber(rs.getLong("f_umber"));
+                user.setAchieveLike(rs.getLong("achieve_like"));
+                user.setTotal(rs.getLong("total"));
+                user.setBanner(rs.getString("banner"));
+                user.setEmail(rs.getString("email"));
+                userList.add(user);
+        }
+        connection.commit();
+        return userList;
+
+    }
+
+    @Override
     public void batchInsert(List<User> userList) throws SQLException {
         Connection connection = DbUtil.getConnection();
         connection.setAutoCommit(false);
@@ -69,14 +104,14 @@ public class UserDaoImpl implements UserDao {
                 pst.setString(7,user.getAddress());
                 pst.setString(8, user.getIntroduction());
                 pst.setString(9,user.getHomepage());
-                pst.setInt(10,0);
-                pst.setInt(11,0);
-                pst.setInt(12,0);
+                pst.setInt(10,user.getFollows());
+                pst.setInt(11,user.getFans());
+                pst.setInt(12,user.getArticles());
                 pst.setObject(13, user.getCreateTime());
                 pst.setShort(14,user.getStatus());
-                pst.setLong(15,0);
-                pst.setLong(16,0);
-                pst.setLong(17,0);
+                pst.setLong(15,user.getFNumber());
+                pst.setLong(16,user.getAchieveLike());
+                pst.setLong(17,user.getTotal());
                 pst.setString(18,user.getBanner());
                 pst.addBatch();
             } catch (SQLException e) {
@@ -155,35 +190,4 @@ public class UserDaoImpl implements UserDao {
         return userList;
     }
 
-//    } private List<User> convert(ResultSet rs){
-//        List<User> userList = new ArrayList<>(50);
-//        try {
-//            while (rs.next()) {
-//                User user = new User();
-//                user.setId(rs.getLong("id"));
-//                user.setMobile(rs.getString("mobile"));
-//                user.setPassword(rs.getString("password"));
-//                user.setNickname(rs.getString("nickname"));
-//                user.setAvatar(rs.getString("avatar"));
-//                user.setGender(rs.getString("gender"));
-//                user.setBirthday(rs.getDate("birthday").toLocalDate());
-//                user.setAddress(rs.getString("address"));
-//                user.setIntroduction(rs.getString("introduction"));
-//                user.setHomepage(rs.getString("homepage"));
-//                user.setFollows(rs.getShort("follows"));
-//                user.setFans(rs.getShort("fans"));
-//                user.setArticles(rs.getShort("articles"));
-//                user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
-//                user.setStatus(rs.getShort("status"));
-//                user.setFNumber(rs.getLong("f_umber"));
-//                user.setAchieveLike(rs.getLong("achieve_like"));
-//                user.setTotal(rs.getLong("total"));
-//                user.setBanner(rs.getString("banner"));
-//                user.setEmail(rs.getString("email"));
-//                userList.add(user);
-//            }
-//        } catch (SQLException e) {
-//            logger.error("用户数据结果集解析产生异常");
-//        }
-//        return userList;
 }

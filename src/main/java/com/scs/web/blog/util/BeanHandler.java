@@ -42,7 +42,7 @@ public class BeanHandler {
                 user.setArticles(rs.getShort("articles"));
                 user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
                 user.setStatus(rs.getShort("status"));
-                user.setFNumber(rs.getLong("f_umber"));
+                user.setFNumber(rs.getLong("f_number"));
                 user.setAchieveLike(rs.getLong("achieve_like"));
                 user.setTotal(rs.getLong("total"));
                 user.setBanner(rs.getString("banner"));
@@ -50,7 +50,8 @@ public class BeanHandler {
                 userList.add(user);
             }
         } catch (SQLException e) {
-            logger.error("用户数据结果集解析产生异常");
+//            logger.error("用户数据结果集解析产生异常");
+            e.printStackTrace();
         }
         return userList;
     }
@@ -72,7 +73,8 @@ public class BeanHandler {
                 themeList.add(theme);
             }
         } catch (SQLException e) {
-            logger.error("专题数据结果集解析产生异常");
+            e.printStackTrace();
+//            logger.error("专题数据结果集解析产生异常");
         }
         return themeList;
     }
@@ -87,9 +89,9 @@ public class BeanHandler {
                 article.setId(rs.getLong("id"));
                 article.setTitle(rs.getString("title"));
                 article.setContent(rs.getString("content"));
-                article.setCover(rs.getString("cover"));
+//                article.setCover(rs.getString("cover"));
                 article.setDiamond(rs.getInt("diamond"));
-                article.setComments(rs.getInt("comments"));
+//                article.setComments(rs.getInt("comments"));
                 article.setLikes(rs.getInt("likes"));
                 article.setPublishTime(rs.getString("publish_time"));
                 article.setUnlikes(rs.getString("unlikes"));
@@ -103,7 +105,7 @@ public class BeanHandler {
                 //专题信息
                 Theme theme = new Theme();
                 theme.setId(rs.getLong("theme_id"));
-                theme.setThName(rs.getString("topic_name"));
+                theme.setThName(rs.getString("th_name"));
                 theme.setPic(rs.getString("pic"));
 
                 //给文章视图对象设置三块内容
@@ -114,7 +116,8 @@ public class BeanHandler {
                 articleVoList.add(articleVo);
             }
         } catch (SQLException e) {
-            logger.error("文章数据结果集解析异常");
+            e.printStackTrace();
+//            logger.error("文章数据结果集解析异常");
         }
         return articleVoList;
     }

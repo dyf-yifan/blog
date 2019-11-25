@@ -8,10 +8,8 @@ import com.scs.web.blog.util.DbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,11 +31,6 @@ public class ArticleDaoImpl implements ArticleDao {
 //        int n = pst.executeUpdate();
 //        DbUtil.close(connection,pst);
 //        return n;
-//    }
-
-//    @Override
-//    public List<Entity> selectAll() throws SQLException {
-//            return Db.use().query("SELECT * from article ORDER BY id DESC");
 //    }
 
     @Override
@@ -183,5 +176,55 @@ public class ArticleDaoImpl implements ArticleDao {
         pst.executeBatch();
         connection.commit();
         DbUtil.close(connection,pst);
+    }
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+//    @Override
+//    public List<Entity> selectAll() throws SQLException {
+//        return Db.use().query("SELECT * from article ORDER BY id DESC");
+//}
+//    @Override
+//    public List<Article> selectAll() throws SQLException {
+//        Connection connection = DbUtil.getConnection();
+//        String sql = "SELECT * FROM article ORDER BY id ";
+//        PreparedStatement pst = connection.prepareStatement(sql);
+//        ResultSet rs = pst.executeQuery();
+//        List<Article> articleList = BeanHandler.convertArticle(rs);
+//        DbUtil.close(connection, pst, rs);
+//        return articleList;
+//    }
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
+    @Override
+    public List<Article> findAll() throws SQLException {
+        List<Article> articleList = new ArrayList<>();
+        Connection connection = DbUtil.getConnection();
+        connection.setAutoCommit(false);
+        String sql = "SELECT * FROM article" ;
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while(rs.next()){
+            Article article = new Article();
+            article.setId(rs.getLong("id"));
+            article.setTitle(rs.getString("title"));
+            article.setContent(rs.getString("content"));
+            article.setCover(rs.getString("cover"));
+            article.setDiamond(rs.getInt("diamond"));
+            article.setComments(rs.getInt("comments"));
+            article.setLikes(rs.getInt("likes"));
+            article.setPublishTime(rs.getString("publish_time"));
+            article.setUnlikes(rs.getString("unlikes"));
+            articleList.add(article);
+        }
+        connection.commit();
+        return articleList;
+
     }
 }

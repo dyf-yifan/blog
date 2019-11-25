@@ -10,20 +10,6 @@ import java.util.List;
  * @author 丁怡凡
  */
 public interface ArticleDao {
-//    /**
-//     * 插入文章
-//     * @param article
-//     * @return
-//     * @throws SQLException
-//     */
-//    int insert(Article article) throws SQLException;
-
-//    /**
-//     * 查询所有文章
-//     * @return
-//     * @throws SQLException
-//     */
-//    List<Entity> selectAll() throws SQLException;
 
     /**
      * 批量新增文章
@@ -80,4 +66,17 @@ public interface ArticleDao {
      * @throws SQLException
      */
     ArticleVo getArticle(long id) throws SQLException;
+//    /**
+//     * 查找所有文章
+//     * @return List
+//     * @throws SQLException
+//     */
+//    List<Article> findAll() throws SQLException;
+//
+    /**
+     * 获取所有文章
+     * @return
+     * @throws SQLException
+     */
+    List<Article> findAll() throws SQLException;
 }

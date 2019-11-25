@@ -14,7 +14,7 @@ public class ThemeDaoTest {
     private static Logger logger = (Logger) LoggerFactory.getLogger(ThemeDaoTest.class);
     private ThemeDao themeDao = DaoFactory.getThemeDaoInstance();
     @Test
-    public void selectHotTopics() throws SQLException {
+    public void selectHotThemes() throws SQLException {
         List<Theme> themeList = themeDao.selectHotThemes();
         System.out.println(themeList.size());
     }

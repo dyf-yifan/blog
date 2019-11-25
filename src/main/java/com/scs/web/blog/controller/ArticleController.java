@@ -82,7 +82,13 @@ public class ArticleController extends HttpServlet {
         out.print(gson.toJson(result));
         out.close();
     }
-
+    private void getArticles(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Gson gson = new GsonBuilder().create();
+        Result result = articleService.getArticles();
+        PrintWriter out = resp.getWriter();
+        out.print(gson.toJson(result));
+        out.close();
+    }
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }

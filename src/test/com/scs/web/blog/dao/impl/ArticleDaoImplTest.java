@@ -5,5 +5,4 @@ import com.scs.web.blog.factory.DaoFactory;
 
 public class ArticleDaoImplTest {
     private ArticleDao articleDao = DaoFactory.getArticleDaoInstance();
-
 }

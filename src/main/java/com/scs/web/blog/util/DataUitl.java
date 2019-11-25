@@ -30,7 +30,20 @@ public class DataUitl {
         }
         return stringBuilder.toString();
     }
-
+    public static  String getEmail(){
+        StringBuilder stringBuilder = new StringBuilder("510");
+        Random random = new Random();
+        for( int i = 0; i < 7; i++){
+            int num = random.nextInt(10);
+            stringBuilder.append(num);
+        }
+        return stringBuilder.toString()+"@qq.com";
+    }
+    public static short getStatus(){
+        Random random = new Random();
+        int status = random.nextInt(3);
+        return (short) status;
+    }
     /**
      * 获得密码
      * @return
@@ -70,6 +83,11 @@ public class DataUitl {
         Random random = new Random();
         int diamond = random.nextInt(100);
         return diamond;
+    }
+    public static short getDia(){
+        Random random = new Random();
+        short dia = (short) random.nextInt(100);
+        return dia;
     }
     /**
      * 随机生成地址

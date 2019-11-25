@@ -38,7 +38,7 @@ public class ThemeController extends HttpServlet {
             if (page != null) {
                 getThemesByPage(resp, Integer.parseInt(page), Integer.parseInt(count));
             } else if (keywords != null) {
-                getTopicsByKeywords(resp, keywords);
+                getThemesByKeywords(resp, keywords);
             } else {
                 getHotThemes(req, resp);
             }
@@ -63,7 +63,7 @@ public class ThemeController extends HttpServlet {
         out.close();
     }
 
-    private void getTopicsByKeywords(HttpServletResponse resp, String keywords) throws ServletException, IOException {
+    private void getThemesByKeywords(HttpServletResponse resp, String keywords) throws ServletException, IOException {
         Gson gson = new GsonBuilder().create();
         Result result = themeService.selectByKeywords(keywords);
         PrintWriter out = resp.getWriter();

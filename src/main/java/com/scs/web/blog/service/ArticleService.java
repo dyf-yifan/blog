@@ -14,6 +14,12 @@ public interface ArticleService {
     Result getHotArticles();
 
     /**
+     * 获取热门文章
+     *
+     * @return
+     */
+    Result getArticles();
+    /**
      *获取分页文章
      * @param currentPage
      * @param count
@@ -29,7 +35,6 @@ public interface ArticleService {
      */
     Result getArticle(long id);
 
-
     /**
      * 根据标题或摘要模糊查询文章
      *
@@ -37,4 +42,5 @@ public interface ArticleService {
      * @return
      */
     Result selectByKeywords(String keywords);
+
 }

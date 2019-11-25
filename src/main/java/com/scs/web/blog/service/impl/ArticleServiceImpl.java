@@ -40,6 +40,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Result getArticles() {
+
+        return null;
+    }
+
+    @Override
     public Result getArticlesByPage(int currentPage, int count) {
         List<ArticleVo> articleVoList = null;
         try {

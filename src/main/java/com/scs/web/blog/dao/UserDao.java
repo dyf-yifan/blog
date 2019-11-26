@@ -12,12 +12,12 @@ import java.util.List;
  * @author 丁怡凡
  */
 public interface UserDao {
-    /**
-     * 查找所有用户
-     * @return List
-     * @throws SQLException
-     */
-    List<User> findAll() throws SQLException;
+//    /**
+//     * 查找所有用户
+//     * @return List
+//     * @throws SQLException
+//     */
+//    List<User> findAll() throws SQLException;
  /**
  * 批量新增用户
  * @param userList

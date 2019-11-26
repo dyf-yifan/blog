@@ -10,8 +10,10 @@ import com.scs.web.blog.util.DbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.*;
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -50,42 +52,42 @@ public class UserDaoImpl implements UserDao {
         DbUtil.close(connection,pst);
     }
 
-    @Override
-    public List<User> findAll() throws SQLException {
-        List<User> userList = new ArrayList<>();
-        Connection connection = DbUtil.getConnection();
-        connection.setAutoCommit(false);
-        String sql = "SELECT * FROM t_user" ;
-        Statement stmt = connection.createStatement();
-        ResultSet rs = stmt.executeQuery(sql);
-        while(rs.next()){
-                User user = new User();
-                user.setId(rs.getLong("id"));
-                user.setMobile(rs.getString("mobile"));
-                user.setPassword(rs.getString("password"));
-                user.setNickname(rs.getString("nickname"));
-                user.setAvatar(rs.getString("avatar"));
-                user.setGender(rs.getString("gender"));
-                user.setBirthday(rs.getDate("birthday").toLocalDate());
-                user.setAddress(rs.getString("address"));
-                user.setIntroduction(rs.getString("introduction"));
-                user.setHomepage(rs.getString("homepage"));
-                user.setFollows(rs.getShort("follows"));
-                user.setFans(rs.getShort("fans"));
-                user.setArticles(rs.getShort("articles"));
-                user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
-                user.setStatus(rs.getShort("status"));
-                user.setFNumber(rs.getLong("f_umber"));
-                user.setAchieveLike(rs.getLong("achieve_like"));
-                user.setTotal(rs.getLong("total"));
-                user.setBanner(rs.getString("banner"));
-                user.setEmail(rs.getString("email"));
-                userList.add(user);
-        }
-        connection.commit();
-        return userList;
-
-    }
+//    @Override
+//    public List<User> findAll() throws SQLException {
+//        List<User> userList = new ArrayList<>();
+//        Connection connection = DbUtil.getConnection();
+//        connection.setAutoCommit(false);
+//        String sql = "SELECT * FROM t_user" ;
+//        Statement stmt = connection.createStatement();
+//        ResultSet rs = stmt.executeQuery(sql);
+//        while(rs.next()){
+//                User user = new User();
+//                user.setId(rs.getLong("id"));
+//                user.setMobile(rs.getString("mobile"));
+//                user.setPassword(rs.getString("password"));
+//                user.setNickname(rs.getString("nickname"));
+//                user.setAvatar(rs.getString("avatar"));
+//                user.setGender(rs.getString("gender"));
+//                user.setBirthday(rs.getDate("birthday").toLocalDate());
+//                user.setAddress(rs.getString("address"));
+//                user.setIntroduction(rs.getString("introduction"));
+//                user.setHomepage(rs.getString("homepage"));
+//                user.setFollows(rs.getShort("follows"));
+//                user.setFans(rs.getShort("fans"));
+//                user.setArticles(rs.getShort("articles"));
+//                user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
+//                user.setStatus(rs.getShort("status"));
+//                user.setFNumber(rs.getLong("f_umber"));
+//                user.setAchieveLike(rs.getLong("achieve_like"));
+//                user.setTotal(rs.getLong("total"));
+//                user.setBanner(rs.getString("banner"));
+//                user.setEmail(rs.getString("email"));
+//                userList.add(user);
+//        }
+//        connection.commit();
+//        return userList;
+//
+//    }
 
     @Override
     public void batchInsert(List<User> userList) throws SQLException {

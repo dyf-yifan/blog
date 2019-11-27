@@ -166,16 +166,21 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public UserVo getUser(long id) throws SQLException {
+    public UserVo getUser(long id) {
         Connection connection = DbUtil.getConnection();
         String sql = " SELECT * FROM t_user WHERE id = ? ";
-        PreparedStatement pst = connection.prepareStatement(sql);
-        pst.setLong(1, id);
-        ResultSet rs = pst.executeQuery();
+        PreparedStatement pst = null;
         UserVo userVo = new UserVo();
-        User user = BeanHandler.convertUser(rs).get(0);
-        userVo.setUser(user);
-        DbUtil.close(connection, pst, rs);
+        try {
+            pst = connection.prepareStatement(sql);
+            pst.setLong(1, id);
+            ResultSet rs = pst.executeQuery();
+            User user = BeanHandler.convertUser(rs).get(0);
+            userVo.setUser(user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        DbUtil.close(connection, pst);
         return userVo;
     }
 

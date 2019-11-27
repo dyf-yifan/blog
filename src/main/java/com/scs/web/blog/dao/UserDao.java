@@ -70,7 +70,7 @@ void batchInsert(List<User> userList) throws SQLException;
      * @return
      * @throws SQLException
      */
-     UserVo getUser(long id) throws SQLException;
+     UserVo getUser(long id) ;
 
     /**
      * 模糊搜索用户

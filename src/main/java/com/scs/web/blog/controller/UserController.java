@@ -3,6 +3,7 @@ package com.scs.web.blog.controller;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.domain.vo.UserVo;
 import com.scs.web.blog.factory.ServiceFactory;
 import com.scs.web.blog.listener.MySessionContext;
 import com.scs.web.blog.service.UserService;
@@ -81,9 +82,10 @@ public class UserController extends HttpServlet {
         //取得路径参数
         String id = info.substring(info.indexOf("/") + 1);
         Gson gson = new GsonBuilder().create();
-        Result result = userService.getUser(Long.parseLong(id));
+        UserVo uservo = userService.getUser(Long.parseLong(id));
         PrintWriter out = resp.getWriter();
-        out.print(gson.toJson(result));
+        System.out.println(uservo);
+        out.print(gson.toJson(uservo));
         out.close();
     }
 

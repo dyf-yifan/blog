@@ -1,6 +1,7 @@
 package com.scs.web.blog.service;
 
 import com.scs.web.blog.domain.dto.UserDto;
+import com.scs.web.blog.domain.vo.UserVo;
 import com.scs.web.blog.util.Result;
 
 /**
@@ -32,7 +33,7 @@ public interface UserService {
      * @param id
      * @return
      */
-    Result getUser(long id);
+    UserVo getUser(long id);
 
     /**
      * 根据昵称或简介模糊搜索用户

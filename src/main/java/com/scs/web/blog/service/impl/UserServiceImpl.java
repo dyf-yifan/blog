@@ -3,7 +3,6 @@ package com.scs.web.blog.service.impl;
 import com.scs.web.blog.dao.ArticleDao;
 import com.scs.web.blog.dao.UserDao;
 import com.scs.web.blog.domain.dto.UserDto;
-import com.scs.web.blog.domain.vo.ArticleVo;
 import com.scs.web.blog.domain.vo.UserVo;
 import com.scs.web.blog.entity.User;
 import com.scs.web.blog.factory.DaoFactory;
@@ -81,21 +80,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Result getUser(long id) {
-        UserVo userVo = null;
-        try {
-            userVo = userDao.getUser(id);
-        } catch (SQLException e) {
-            logger.error("根据id获取用户详情出现异常");
-        }
-        if (userVo != null) {
-            try {
-                List<ArticleVo> articleVoList = articleDao.selectByUserId(id);
-            } catch (SQLException e) {
-                logger.error("根据用户id获取列表文章数据出现异常");
-            }
-        }
-        return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+    public UserVo getUser(long id) {
+        System.out.println(userDao.getUser(id));
+        return userDao.getUser(id);
     }
 
     @Override

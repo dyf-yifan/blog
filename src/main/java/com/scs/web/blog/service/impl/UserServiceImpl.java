@@ -63,6 +63,22 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public Result getUsers() {
+        List<User> userList = null;
+        try {
+            userList = userDao.findAll();
+        }catch (SQLException e) {
+            e.printStackTrace();
+//            logger.error("获取所有用户出现异常");
+        }
+        if (userList != null){
+            return Result.success(userList);
+        }else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+    }
+
 
     @Override
     public Result selectByPage(int currentPage, int count) {

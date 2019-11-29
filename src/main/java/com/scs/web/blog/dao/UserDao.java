@@ -1,6 +1,5 @@
 package com.scs.web.blog.dao;
 
-import cn.hutool.db.Entity;
 import com.scs.web.blog.domain.vo.UserVo;
 import com.scs.web.blog.entity.User;
 
@@ -12,12 +11,12 @@ import java.util.List;
  * @author 丁怡凡
  */
 public interface UserDao {
-//    /**
-//     * 查找所有用户
-//     * @return List
-//     * @throws SQLException
-//     */
-//    List<User> findAll() throws SQLException;
+    /**
+     * 查找所有用户
+     * @return List
+     * @throws SQLException
+     */
+    List<User> findAll() throws SQLException;
  /**
  * 批量新增用户
  * @param userList
@@ -40,14 +39,6 @@ void batchInsert(List<User> userList) throws SQLException;
      * @throws SQLException
      */
     User findUserByMobile(String mobile) throws SQLException;
-
-    /**
-     * 查询所有用户
-     * @return
-     * @throws SQLException
-     */
-    List<Entity> selectAll() throws SQLException;
-
     /**
      * 查询热门用户
      * @return

@@ -52,7 +52,7 @@ public interface ArticleDao {
     List<ArticleVo> selectByThemeId(long themeId) throws SQLException;
 
     /**
-     * 根据专题id查询所有文章
+     * 根据作者id查询所有文章
      * @param userId
      * @return
      * @throws SQLException
@@ -66,13 +66,6 @@ public interface ArticleDao {
      * @throws SQLException
      */
     ArticleVo getArticle(long id) throws SQLException;
-//    /**
-//     * 查找所有文章
-//     * @return List
-//     * @throws SQLException
-//     */
-//    List<Article> findAll() throws SQLException;
-//
     /**
      * 获取所有文章
      * @return

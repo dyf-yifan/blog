@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface RegionDao {
     /**
-     *  查询所有地址
-     *
+     * 查询所有地址
      * @return
+     * @throws SQLException
      */
     List<Region> selectAll()throws SQLException;
 }

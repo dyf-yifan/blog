@@ -45,10 +45,14 @@ public class UserController extends HttpServlet {
             } else if (keywords != null) {
                 getUsersByKeywords(resp, keywords);
             } else {
-                getHotUsers(req, resp);
+                getUsers(req,resp);
             }
         } else {
-            getUser(req, resp);
+            if ("/api/user/hot".equals(uri)){
+                getHotUsers(req,resp);
+            }else {
+                getUser(req, resp);
+            }
         }
     }
 
@@ -59,8 +63,14 @@ public class UserController extends HttpServlet {
         out.print(gson.toJson(result));
         out.close();
     }
-
-    private void getUsersByPage(HttpServletResponse resp, int page, int count) throws IOException {
+    private void getUsers(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        Gson gson = new GsonBuilder().create();
+        Result result = userService.getUsers();
+        PrintWriter out = resp.getWriter();
+        out.print(gson.toJson(result));
+        out.close();
+    }
+        private void getUsersByPage(HttpServletResponse resp, int page, int count) throws IOException {
         Gson gson = new GsonBuilder().create();
         Result result = userService.selectByPage(page, count);
         PrintWriter out = resp.getWriter();

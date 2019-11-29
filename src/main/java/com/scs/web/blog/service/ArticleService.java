@@ -14,7 +14,7 @@ public interface ArticleService {
     Result getHotArticles();
 
     /**
-     * 获取热门文章
+     * 获取全部文章
      *
      * @return
      */

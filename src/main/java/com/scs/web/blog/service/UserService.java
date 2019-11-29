@@ -20,6 +20,12 @@ public interface UserService {
      * @return
      */
     Result getHotUsers();
+
+    /**
+     * 获取所有用户信息
+     * @return
+     */
+    Result getUsers();
     /**
      * 获取分页用户信息
      * @param currPage

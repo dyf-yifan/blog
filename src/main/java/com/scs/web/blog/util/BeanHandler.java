@@ -42,7 +42,7 @@ public class BeanHandler {
                 user.setArticles(rs.getShort("articles"));
                 user.setCreateTime(rs.getTimestamp("create_time").toLocalDateTime());
                 user.setStatus(rs.getShort("status"));
-                user.setFNumber(rs.getLong("f_number"));
+//                user.setFNumber(rs.getLong("f_number"));
                 user.setAchieveLike(rs.getLong("achieve_like"));
                 user.setTotal(rs.getLong("total"));
                 user.setBanner(rs.getString("banner"));

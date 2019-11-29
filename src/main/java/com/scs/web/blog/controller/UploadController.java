@@ -43,8 +43,7 @@ public class UploadController extends HttpServlet {
             if (part.getSize()<max){
                 String contentType = part.getContentType();
                 String fileName = part.getSubmittedFileName();
-                String fileExtName = fileName.substring(fileName
-                        .lastIndexOf(".") - 1);
+                String fileExtName = fileName.substring(fileName.lastIndexOf(".") - 1);
                 part.write(f.getPath()+"/"+ UUID.randomUUID().toString()+fileExtName);
                 req.setAttribute("msg","上传成功");
 

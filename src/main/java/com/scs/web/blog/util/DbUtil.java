@@ -131,7 +131,7 @@ public class DbUtil {
         close(resultSet);
     }
 
-    public static void main(String[] args) {
-        DbUtil.getConnection();
-    }
+//    public static void main(String[] args) {
+//        DbUtil.getConnection();
+//    }
 }

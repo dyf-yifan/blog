@@ -17,6 +17,8 @@ import java.util.Random;
  * @Version 1.0
  **/
 public class DataUitl {
+    public static String base = "abcdefghijklmnopqrstuvwxyz0123456789";
+    public static final String[] email_suffix="@mail.com,@yahoo.com,@msn.com,@hotmail.com,@aol.com,@ask.com,@live.com,@qq.com,@0355.net,@163.com,@163.net,@263.net,@3721.net,@yeah.net,@googlemail.com,@126.com,@sina.com,@sohu.com,@yahoo.com.cn".split(",");
     /**
      * 获得电话号码
      * @return
@@ -30,18 +32,36 @@ public class DataUitl {
         }
         return stringBuilder.toString();
     }
-    public static  String getEmail(){
-        StringBuilder stringBuilder = new StringBuilder("510");
-        Random random = new Random();
-        for( int i = 0; i < 7; i++){
-            int num = random.nextInt(10);
-            stringBuilder.append(num);
+    /**
+     *
+     * @param start
+     * @param end
+     * @return
+     */
+    public static int getNum(int start,int end){
+        return (int)(Math.random() * (end - start + 1) + start);
+    }
+    /**
+     * 随机生成邮箱
+     * @return
+     */
+    public static String getEmail(int lMin, int lMax) {
+        int length = getNum(lMin,lMax);
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < length; i++){
+            int number = (int) (Math.random() * base.length());
+            sb.append(base.charAt(number));
         }
-        return stringBuilder.toString()+"@qq.com";
+        sb.append(email_suffix[(int) (Math.random() * email_suffix.length)]);
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+        System.out.println(DataUitl.getEmail(1,11));
     }
     public static short getStatus(){
         Random random = new Random();
-        int status = random.nextInt(3);
+        int status = random.nextInt(2);
         return (short) status;
     }
     /**

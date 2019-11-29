@@ -53,7 +53,7 @@ public class JsoupSpider {
                 user.setFNumber(DataUitl.getUserId());
                 user.setAchieveLike(DataUitl.getUserId());
                 user.setTotal(DataUitl.getUserId());
-                user.setEmail(DataUitl.getEmail());
+                user.setEmail(DataUitl.getEmail(0,10));
                 userList.add(user);
             });
         }
@@ -157,5 +157,7 @@ public class JsoupSpider {
         }
         return articleList;
     }
+
+
     }
 

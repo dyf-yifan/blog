@@ -93,7 +93,7 @@ public class UserDaoImpl implements UserDao {
     public void batchInsert(List<User> userList) throws SQLException {
         Connection connection = DbUtil.getConnection();
         connection.setAutoCommit(false);
-        String sql = " INSERT INTO t_user (mobile,password,nickname,avatar,gender,birthday,address,introduction,homepage,follows,fans,articles,create_time,status,f_number,achieve_like,total,banner) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
+        String sql = " INSERT INTO t_user (mobile,password,nickname,avatar,gender,birthday,address,introduction,homepage,follows,fans,articles,create_time,status,f_number,achieve_like,total,banner,email) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement pst = connection.prepareStatement(sql);
         userList.forEach(user -> {
             try {
@@ -115,6 +115,7 @@ public class UserDaoImpl implements UserDao {
                 pst.setLong(16,user.getAchieveLike());
                 pst.setLong(17,user.getTotal());
                 pst.setString(18,user.getBanner());
+                pst.setString(19,user.getEmail());
                 pst.addBatch();
             } catch (SQLException e) {
                 logger.error("批量加入用户数据出现异常");

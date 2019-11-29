@@ -21,6 +21,7 @@ import java.util.List;
  */
 public class JsoupSpider {
     private static Logger logger = LoggerFactory.getLogger(JsoupSpider.class);
+    private static final int PAGE_COUNT = 1;
 
     public static List<User> getUsers() {
         Document document = null;
@@ -36,6 +37,7 @@ public class JsoupSpider {
                 Element wrapDiv = div.child(0);
                 Element link = wrapDiv.child(0);
                 Elements linkChildren = link.children();
+                Element linka = div.child(0).child(0).select("a").get(0);
                 User user = new User();
                 user.setAddress(DataUitl.getAddress());
                 user.setMobile(DataUitl.getMobile());
@@ -54,6 +56,8 @@ public class JsoupSpider {
                 user.setAchieveLike(DataUitl.getUserId());
                 user.setTotal(DataUitl.getUserId());
                 user.setEmail(DataUitl.getEmail(0,10));
+                user.setBanner("https:" + linkChildren.get(0).attr("src"));
+                user.setHomepage("https://www.jianshu.com/u"+linka.attr("href").substring(6));
                 userList.add(user);
             });
         }
@@ -76,6 +80,7 @@ public class JsoupSpider {
             Element thtime = div.child(1).child(0).child(0).child(1).child(0);
             Element look = div.child(1).child(0).child(0).child(1).child(1);
             Element production = div.child(1).child(1);
+            Element link = div.child(1).child(1).select("a").get(0);
             Theme theme = new Theme();
             theme.setPic(pic.attr("src"));
             theme.setThName(thname.text());
@@ -84,26 +89,18 @@ public class JsoupSpider {
             theme.setProduction(production.text());
             theme.setThNumber(DataUitl.getDiamond());
             theme.setAttention(DataUitl.getDiamond());
+            theme.setAdminId(1L);
+            theme.setHomepage("https://www.zhihu.com"+ link.attr("href"));
             themeList.add(theme);
         });
 
         return themeList;
     }
 
-//    public static void main(String[] args) {
-//        Document document = null;
-//        List<Theme> themeList = new ArrayList<>(100);
-//        try {
-//            document = Jsoup.connect("https://www.zhihu.com/api/v4/news_specials/list?limit=10&offset=400").get();
-//        } catch (IOException e) {
-//            logger.error("连接失败");
-//        }
-//
-//        Elements titles = document.getElementsByClass("type-string");
-//        titles.forEach(title -> {
-//            System.out.println(title.text());
-//        });
-//    }
+    public static void main(String[] args) {
+        System.out.println(JsoupSpider.getUsers().get(1));
+    }
+
 
     public static List<Article> getArticles() {
         Document document = null;
@@ -146,6 +143,8 @@ public class JsoupSpider {
                 article.setCover(cover.attr("src"));
                 article.setDiamond(DataUitl.getDiamond());
                 article.setPublishTime(time.text());
+                article.setThemeId(DataUitl.getThemeId());
+                article.setUserId(DataUitl.getUserId());
                 String a = comment.text();
                 String comm = a.substring(0, a.length() - 2);
                 article.setComments(Integer.valueOf(comm));

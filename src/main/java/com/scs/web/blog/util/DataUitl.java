@@ -56,9 +56,6 @@ public class DataUitl {
         return sb.toString();
     }
 
-    public static void main(String[] args) {
-        System.out.println(DataUitl.getEmail(1,11));
-    }
     public static short getStatus(){
         Random random = new Random();
         int status = random.nextInt(2);
@@ -94,11 +91,23 @@ public class DataUitl {
      * @return
      */
     public static Long getUserId() {
+        int max=72;
+        int min=1;
         Random random = new Random();
-        long bound = random.nextInt(72);
+        long bound = random.nextInt(max)%(max-min+1) + min;
         return bound;
     }
 
+    public static void main(String[] args) {
+        System.out.println(DataUitl.getUserId());
+    }
+    public static Long getThemeId() {
+        int max=10;
+        int min=1;
+        Random random = new Random();
+        long bound = random.nextInt(max)%(max-min+1) + min;
+        return bound;
+    }
     public static int getDiamond(){
         Random random = new Random();
         int diamond = random.nextInt(100);

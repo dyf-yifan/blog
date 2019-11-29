@@ -54,9 +54,6 @@ public class DbUtil {
                     properties.getProperty("jdbc.url"),
                     properties.getProperty("jdbc.username"),
                     properties.getProperty("jdbc.password"));
-            if (connection != null) {
-                System.out.println("数据库连接成功");
-            }
         } catch (SQLException e) {
             logger.error("数据库连接失败");
         }
@@ -130,8 +127,4 @@ public class DbUtil {
         close(connection, statement);
         close(resultSet);
     }
-
-//    public static void main(String[] args) {
-//        DbUtil.getConnection();
-//    }
 }

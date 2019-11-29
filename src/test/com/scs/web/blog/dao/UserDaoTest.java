@@ -19,7 +19,7 @@ public class UserDaoTest {
         }
         @Test
         public void findUserByMobile() throws SQLException {
-                User user = userDao.findUserByMobile("13900347723");
+                User user = userDao.findUserByMobile("13993116563");
                 System.out.println(user);
         }
         @Test
@@ -31,7 +31,7 @@ public class UserDaoTest {
         @Test
         public void selectByKeywords() throws SQLException{
                 List<User> userList = userDao.selectByKeywords("土");
-                System.out.println(userList.size());
+                System.out.println(userList);
         }
 
 }

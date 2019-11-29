@@ -21,18 +21,6 @@ import java.util.List;
  **/
 public class ArticleDaoImpl implements ArticleDao {
     private static Logger logger = LoggerFactory.getLogger(ArticleDaoImpl.class);
-//    @Override
-//    public int insert(Article article) throws SQLException {
-//        Connection connection = DbUtil.getConnection();
-//        String sql = "INSERT INTO article (title,content) VALUES (?,?) ";
-//        PreparedStatement pst = connection.prepareStatement(sql);
-//        pst.setString(1, article.getTitle());
-//        pst.setString(2, article.getContent());
-//        int n = pst.executeUpdate();
-//        DbUtil.close(connection,pst);
-//        return n;
-//    }
-
     @Override
     public List<ArticleVo> selectHotArticles() throws SQLException {
         Connection connection = DbUtil.getConnection();
@@ -155,7 +143,7 @@ public class ArticleDaoImpl implements ArticleDao {
     public void batchInsert(List<Article> articleList) throws SQLException {
         Connection connection = DbUtil.getConnection();
         connection.setAutoCommit(false);
-        String sql = "INSERT INTO article (title,content,cover,diamond,comments,likes,publish_time,user_id,unlikes) VALUES (?,?,?,?,?,?,?,?,?) ";
+        String sql = "INSERT INTO article (title,content,cover,diamond,comments,likes,publish_time,user_id,unlikes,theme_id) VALUES (?,?,?,?,?,?,?,?,?,?) ";
         PreparedStatement pst = connection.prepareStatement(sql);
         articleList.forEach(article -> {
             try {
@@ -168,6 +156,7 @@ public class ArticleDaoImpl implements ArticleDao {
                 pst.setString(7, article.getPublishTime());
                 pst.setLong(8,article.getUserId());
                 pst.setString(9,article.getUnlikes());
+                pst.setLong(10,article.getThemeId());
                 pst.addBatch();
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -177,22 +166,6 @@ public class ArticleDaoImpl implements ArticleDao {
         connection.commit();
         DbUtil.close(connection,pst);
     }
-//    /**
-//     *
-//     * @return
-//     * @throws SQLException
-//     */
-//    @Override
-//    public List<Article> selectAll() throws SQLException {
-//        Connection connection = DbUtil.getConnection();
-//        String sql = "SELECT * FROM article ORDER BY id ";
-//        PreparedStatement pst = connection.prepareStatement(sql);
-//        ResultSet rs = pst.executeQuery();
-//        List<Article> articleList = BeanHandler.convertArticle(rs);
-//        DbUtil.close(connection, pst, rs);
-//        return articleList;
-//    }
-
     /**
      *
      * @return

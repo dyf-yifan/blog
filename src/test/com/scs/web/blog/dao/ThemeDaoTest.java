@@ -3,6 +3,7 @@ package com.scs.web.blog.dao;
 import com.scs.web.blog.domain.vo.ThemeVo;
 import com.scs.web.blog.entity.Theme;
 import com.scs.web.blog.factory.DaoFactory;
+import com.scs.web.blog.util.JsoupSpider;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,8 +21,12 @@ public class ThemeDaoTest {
     }
     @Test
     public void selectByKeywords() throws SQLException {
-        List<Theme> themeList = themeDao.selectByKeywords("小");
-        System.out.println(themeList.size());
+        List<Theme> themeList = themeDao.selectByKeywords("双");
+        System.out.println(themeList);
+    }
+    @Test
+    public void batchInsert() throws SQLException {
+        themeDao.batchInsert(JsoupSpider.getThemes());
     }
     @Test
     public void getTheme() throws SQLException {

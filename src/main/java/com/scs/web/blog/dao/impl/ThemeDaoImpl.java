@@ -173,25 +173,5 @@ public class ThemeDaoImpl implements ThemeDao {
         DbUtil.close(connection,pst,rs);
         return themeList;
     }
-//    private List<Theme> convert(ResultSet rs){
-//        List<Theme> themeList = new ArrayList<>(100);
-//        try {
-//            while (rs.next()) {
-//                Theme theme = new Theme();
-//                theme.setId(rs.getLong("id"));
-//                theme.setThName(rs.getString("th_name"));
-//                theme.setPic(rs.getString("pic"));
-//                theme.setAttention(rs.getInt("attention"));
-//                theme.setThNumber(rs.getInt("th_number"));
-//                theme.setThTime(rs.getString("th_time"));
-//                theme.setLook(rs.getString("look"));
-//                theme.setProduction(rs.getString("production"));
-//                theme.setAdminId(rs.getLong("admin_id"));
-//                themeList.add(theme);
-//            }
-//        } catch (SQLException e) {
-//            logger.error("专题数据结果集解析产生异常");
-//        }
-//        return themeList;
-//    }
+
 }

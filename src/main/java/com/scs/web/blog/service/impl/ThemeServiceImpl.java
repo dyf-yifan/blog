@@ -65,6 +65,21 @@ public class ThemeServiceImpl implements ThemeService {
     }
 
     @Override
+    public Result getThemes() {
+        List<Theme> themeList = null;
+        try {
+            themeList = themeDao.findAll();
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+        if (themeList != null){
+            return Result.success(themeList);
+        }else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
+    }
+
+    @Override
     public Result selectByKeywords(String keywords) {
         List<Theme> themeList = null;
         try {

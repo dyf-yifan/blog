@@ -21,6 +21,12 @@ public interface ThemeService {
     Result getTheme(long id);
 
     /**
+     * 获取所有专题
+     * @return
+     */
+    Result getThemes();
+
+    /**
      * 根据名称或描述模糊搜索专题
      *
      * @param keywords

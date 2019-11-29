@@ -2,6 +2,7 @@ package com.scs.web.blog.service.impl;
 
 import com.scs.web.blog.dao.ArticleDao;
 import com.scs.web.blog.domain.vo.ArticleVo;
+import com.scs.web.blog.entity.Article;
 import com.scs.web.blog.factory.DaoFactory;
 import com.scs.web.blog.service.ArticleService;
 import com.scs.web.blog.util.Result;
@@ -41,8 +42,18 @@ public class ArticleServiceImpl implements ArticleService {
 
     @Override
     public Result getArticles() {
+        List<Article> articleList = null;
+        try {
+            articleList = articleDao.findAll();
+        }catch (SQLException e) {
+            e.printStackTrace();
+        }
+        if (articleList != null){
+            return Result.success(articleList);
+        }else {
+            return Result.failure(ResultCode.RESULT_CODE_DATA_NONE);
+        }
 
-        return null;
     }
 
     @Override

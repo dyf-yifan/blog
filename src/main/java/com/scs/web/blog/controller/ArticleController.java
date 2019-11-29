@@ -41,10 +41,14 @@ public class ArticleController extends HttpServlet {
             } else if (keywords != null) {
                 getArticlesByKeywords(resp, keywords);
             } else {
-                getHotArticles(req, resp);
+                getArticles(req, resp);
             }
         } else {
-            getArticle(req, resp);
+            if ("/api/article/hot".equals(uri)){
+                getHotArticles(req,resp);
+            }else {
+                getArticle(req, resp);
+            }
         }
     }
 

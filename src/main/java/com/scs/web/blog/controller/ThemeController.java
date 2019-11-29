@@ -40,10 +40,14 @@ public class ThemeController extends HttpServlet {
             } else if (keywords != null) {
                 getThemesByKeywords(resp, keywords);
             } else {
-                getHotThemes(req, resp);
+                    getThemes(req,resp);
             }
         } else {
-            getTheme(req, resp);
+            if ("/api/theme/hot".equals(uri)){
+                getHotThemes(req, resp);
+            }else {
+                getTheme(req, resp);
+            }
         }
     }
 
@@ -81,4 +85,11 @@ public class ThemeController extends HttpServlet {
         out.print(gson.toJson(result));
         out.close();
     }
-}
+    private void getThemes(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        Gson gson = new GsonBuilder().create();
+        Result result = themeService.getThemes();
+        PrintWriter out = resp.getWriter();
+        out.print(gson.toJson(result));
+        out.close();
+    }
+    }

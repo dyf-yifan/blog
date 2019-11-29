@@ -43,6 +43,13 @@ public interface ThemeDao {
     List<Theme> selectByPage(int currentPage,int count) throws SQLException;
 
     /**
+     * 获取所有专题
+     * @return
+     * @throws SQLException
+     */
+    List<Theme> findAll() throws SQLException;
+
+    /**
      * 根据id获取专题详情
      * @param id
      * @return

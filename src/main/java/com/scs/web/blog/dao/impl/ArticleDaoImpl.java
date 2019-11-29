@@ -177,15 +177,11 @@ public class ArticleDaoImpl implements ArticleDao {
         connection.commit();
         DbUtil.close(connection,pst);
     }
-    /**
-     *
-     * @return
-     * @throws SQLException
-     */
-//    @Override
-//    public List<Entity> selectAll() throws SQLException {
-//        return Db.use().query("SELECT * from article ORDER BY id DESC");
-//}
+//    /**
+//     *
+//     * @return
+//     * @throws SQLException
+//     */
 //    @Override
 //    public List<Article> selectAll() throws SQLException {
 //        Connection connection = DbUtil.getConnection();
@@ -225,6 +221,5 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         connection.commit();
         return articleList;
-
     }
 }

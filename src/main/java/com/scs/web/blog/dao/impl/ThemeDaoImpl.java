@@ -9,10 +9,8 @@ import com.scs.web.blog.util.DbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -51,11 +49,6 @@ public class ThemeDaoImpl implements ThemeDao {
         connection.commit();
         DbUtil.close(connection,pst);
     }
-
-//    @Override
-//    public List<Entity> selectAll() throws SQLException {
-//        return Db.use().query("SELECT * from theme ORDER BY id DESC");
-//    }
 
     /**
      *
@@ -105,6 +98,31 @@ public class ThemeDaoImpl implements ThemeDao {
         ResultSet rs = pst.executeQuery();
         List<Theme> themeList = BeanHandler.convertTheme(rs);
         DbUtil.close(connection,pst,rs);
+        return themeList;
+    }
+
+    @Override
+    public List<Theme> findAll() throws SQLException {
+        List<Theme> themeList = new ArrayList<>();
+        Connection connection = DbUtil.getConnection();
+        connection.setAutoCommit(false);
+        String sql = "SELECT * FROM theme ";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()){
+            Theme theme = new Theme();
+            theme.setId(rs.getLong("id"));
+            theme.setThName(rs.getString("th_name"));
+            theme.setPic(rs.getString("pic"));
+            theme.setAttention(rs.getInt("attention"));
+            theme.setThNumber(rs.getInt("th_number"));
+            theme.setThTime(rs.getString("th_time"));
+            theme.setLook(rs.getString("look"));
+            theme.setProduction(rs.getString("production"));
+            theme.setAdminId(rs.getLong("admin_id"));
+            themeList.add(theme);
+        }
+        connection.commit();
         return themeList;
     }
 
